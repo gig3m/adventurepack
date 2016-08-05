@@ -6,18 +6,22 @@ PouchDB.plugin(require('pouchdb-find'));
 var db = new PouchDB('advpack')
 
 // Pull in page components
-import Test from './components/Test.vue'
+import CharacterCreate from './components/CharacterCreate.vue'
 
 // Pull in global components and register
-Vue.component('text-input', require('./components/text-input.vue'))
+Vue.component('field-text-input', require('./components/field-text-input.vue'))
+Vue.component('field-select', require('./components/field-select.vue'))
+Vue.component('field-checkbox-toggle', require('./components/field-checkbox-toggle.vue'))
+Vue.component('field-checkbox-slider', require('./components/field-checkbox-slider.vue'))
+Vue.component('field-checkbox', require('./components/field-checkbox.vue'))
 
 new Vue({
   el: '#app',
   data: {
-    currentView: 'Test'
+    currentView: 'CharacterCreate'
   },
   components: {
-  	Test
+  	CharacterCreate
   }
 })
 

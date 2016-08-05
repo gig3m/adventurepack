@@ -54,9 +54,9 @@
 	
 	var _vue2 = _interopRequireDefault(_vue);
 	
-	var _Test = __webpack_require__(20);
+	var _CharacterCreate = __webpack_require__(55);
 	
-	var _Test2 = _interopRequireDefault(_Test);
+	var _CharacterCreate2 = _interopRequireDefault(_CharacterCreate);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -68,15 +68,19 @@
 	
 	
 	// Pull in global components and register
-	_vue2.default.component('text-input', __webpack_require__(49));
+	_vue2.default.component('field-text-input', __webpack_require__(52));
+	_vue2.default.component('field-select', __webpack_require__(58));
+	_vue2.default.component('field-checkbox-toggle', __webpack_require__(65));
+	_vue2.default.component('field-checkbox-slider', __webpack_require__(68));
+	_vue2.default.component('field-checkbox', __webpack_require__(71));
 	
 	new _vue2.default({
 	  el: '#app',
 	  data: {
-	    currentView: 'Test'
+	    currentView: 'CharacterCreate'
 	  },
 	  components: {
-	    Test: _Test2.default
+	    CharacterCreate: _CharacterCreate2.default
 	  }
 	});
 
@@ -20209,398 +20213,9 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_exports__, __vue_options__
-	
-	/* script */
-	__vue_exports__ = __webpack_require__(21)
-	
-	/* template */
-	var __vue_template__ = __webpack_require__(22)
-	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
-	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-	__vue_options__ = __vue_exports__ = __vue_exports__.default
-	}
-	if (typeof __vue_options__ === "function") {
-	  __vue_options__ = __vue_options__.options
-	}
-	__vue_options__.render = __vue_template__.render
-	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	
-	/* hot reload */
-	if (false) {(function () {
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), false)
-	  if (!hotAPI.compatible) return
-	  module.hot.accept()
-	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-1", __vue_options__)
-	  } else {
-	    hotAPI.reload("data-v-1", __vue_options__)
-	  }
-	})()}
-	if (__vue_options__.functional) {console.error("[vue-loader] Test.vue: functional components are not supported and should be defined in plain js files using render functions.")}
-	
-	module.exports = __vue_exports__
-
-
-/***/ },
-/* 21 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = {
-		data: function data() {
-			return {
-				character: {}
-			};
-		}
-	};
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports={render:function(){with(this) {
-	  return _h('div', {
-	    staticClass: "ui grid"
-	  }, [_m(0), " ", _h('div', {
-	    staticClass: "sixteen wide column"
-	  }, [_h('form', {
-	    staticClass: "ui form"
-	  }, [_h('div', {
-	    staticClass: "two fields"
-	  }, [_h('div', {
-	    staticClass: "field"
-	  }, [_m(1), " ", _h('input', {
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "Full Name",
-	      "v-model": character.name
-	    }
-	  })]), " ", _h('div', {
-	    staticClass: "field"
-	  }, [_m(2), " ", _h('input', {
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "Player",
-	      "v-model": character.player
-	    }
-	  })])]), " ", _h('div', {
-	    staticClass: "four fields"
-	  }, [_h('div', {
-	    staticClass: "field"
-	  }, [_m(3), " ", _h('select', {
-	    staticClass: "ui dropdown",
-	    attrs: {
-	      "v-model": character.class
-	    }
-	  }, [_m(4), " ", _m(5), " ", _m(6), " ", _m(7), " ", _m(8), " ", _m(9), " ", _m(10), " ", _m(11), " ", _m(12), " ", _m(13), " ", _m(14), " ", _m(15), " ", _m(16)])]), " ", _h('div', {
-	    staticClass: "field"
-	  }, [_m(17), " ", _h('select', {
-	    staticClass: "ui dropdown",
-	    attrs: {
-	      "v-model": character.sex
-	    }
-	  }, [_m(18), " ", _m(19), " ", _m(20)])]), " ", _h('div', {
-	    staticClass: "field"
-	  }, [_m(21), " ", _h('select', {
-	    staticClass: "ui dropdown",
-	    attrs: {
-	      "v-model": character.race
-	    }
-	  }, [_m(22), " ", _m(23), " ", _m(24), " ", _m(25), " ", _m(26), " ", _m(27), " ", _m(28), " ", _m(29), " ", _m(30), " ", _m(31), " ", _m(32), " ", _m(33)])]), " ", _h('div', {
-	    staticClass: "field"
-	  }, [_m(34), " ", _h('input', {
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "Sub-race",
-	      "v-model": character.sub_race
-	    }
-	  })])]), " ", _h('div', {
-	    staticClass: "four fields"
-	  }, [_h('div', {
-	    staticClass: "field"
-	  }, [_m(35), " ", _h('input', {
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "First Name",
-	      "v-model": character.alignment
-	    }
-	  })]), " ", _h('div', {
-	    staticClass: "field"
-	  }, [_m(36), " ", _h('input', {
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "First Name",
-	      "v-model": character.background
-	    }
-	  })]), " ", _h('div', {
-	    staticClass: "field"
-	  }, [_m(37), " ", _h('input', {
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "Level",
-	      "v-model": character.level
-	    }
-	  })]), " ", _h('div', {
-	    staticClass: "field"
-	  }, [_m(38), " ", _h('input', {
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "First Name",
-	      "v-model": character.xp
-	    }
-	  })])]), " ", _h('div', {
-	    staticClass: "six fields"
-	  }, [_h('div', {
-	    staticClass: "one field"
-	  }, [_m(39), " ", _h('div', {
-	    staticClass: "ui massive input"
-	  }, [_h('input', {
-	    attrs: {
-	      "type": "text",
-	      "v-model": character.str
-	    }
-	  })]), " ", _h('div', {
-	    staticClass: "grouped fields"
-	  }, [_h('div', {
-	    staticClass: "inline field"
-	  }, [_m(40), " ", _h('input', {
-	    staticClass: "hidden",
-	    attrs: {
-	      "type": "checkbox",
-	      "v-model": character.s
-	    }
-	  }), " ", _m(41)])])])])])]), " ", _m(42), " "])
-	}},staticRenderFns: [function(){with(this) {
-	  return _h('div', {
-	    staticClass: "sixteen wide column"
-	  }, [_h('h1', {
-	    staticClass: "ui header"
-	  }, ["Character Creation"])])
-	}},function(){with(this) {
-	  return _h('label', ["Full Name"])
-	}},function(){with(this) {
-	  return _h('label', ["Player"])
-	}},function(){with(this) {
-	  return _h('label', ["Character Class"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "disabled": "",
-	      "selected": ""
-	    }
-	  }, ["Select your option"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Barbarian"
-	    }
-	  }, ["Barbarian"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Bard"
-	    }
-	  }, ["Bard"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Cleric"
-	    }
-	  }, ["Cleric"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Druid"
-	    }
-	  }, ["Druid"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Fighter"
-	    }
-	  }, ["Fighter"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Monk"
-	    }
-	  }, ["Monk"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Paladin"
-	    }
-	  }, ["Paladin"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Ranger"
-	    }
-	  }, ["Ranger"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Rogue"
-	    }
-	  }, ["Rogue"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Sorcerer"
-	    }
-	  }, ["Sorcerer"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Wizard"
-	    }
-	  }, ["Wizard"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Warlock"
-	    }
-	  }, ["Warlock"])
-	}},function(){with(this) {
-	  return _h('label', ["Sex"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "disabled": "",
-	      "selected": ""
-	    }
-	  }, ["Select your option"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Male"
-	    }
-	  }, ["Male"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Female"
-	    }
-	  }, ["Female"])
-	}},function(){with(this) {
-	  return _h('label', ["Race"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "disabled": "",
-	      "selected": ""
-	    }
-	  }, ["Select your option"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Dragonborn"
-	    }
-	  }, ["Dragonborn"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Dwarf"
-	    }
-	  }, ["Dwarf"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Elf"
-	    }
-	  }, ["Elf"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Gnome"
-	    }
-	  }, ["Gnome"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Half-elf"
-	    }
-	  }, ["Half-elf"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Half-Orc"
-	    }
-	  }, ["Half-Orc"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Halfling"
-	    }
-	  }, ["Halfling"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Human"
-	    }
-	  }, ["Human"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Tiefling"
-	    }
-	  }, ["Tiefling"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Genasi"
-	    }
-	  }, ["Genasi"])
-	}},function(){with(this) {
-	  return _h('option', {
-	    attrs: {
-	      "value": "Goliath"
-	    }
-	  }, ["Goliath"])
-	}},function(){with(this) {
-	  return _h('label', ["Sub-race"])
-	}},function(){with(this) {
-	  return _h('label', ["Alignment"])
-	}},function(){with(this) {
-	  return _h('label', ["Background"])
-	}},function(){with(this) {
-	  return _h('label', ["Level"])
-	}},function(){with(this) {
-	  return _h('label', ["Expierience Points"])
-	}},function(){with(this) {
-	  return _h('label', ["Strength"])
-	}},function(){with(this) {
-	  return _h('div', {
-	    staticClass: "ui checkbox"
-	  })
-	}},function(){with(this) {
-	  return _h('label', ["This"])
-	}},function(){with(this) {
-	  return _h('button', {
-	    staticClass: "ui button",
-	    attrs: {
-	      "type": "submit"
-	    }
-	  }, ["Submit"])
-	}}]}
-	if (false) {
-	  module.hot.accept()
-	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-1", module.exports)
-	  }
-	}
-
-/***/ },
+/* 20 */,
+/* 21 */,
+/* 22 */,
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -24593,16 +24208,19 @@
 	module.exports = deleteIndex;
 
 /***/ },
-/* 49 */
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	
 	/* script */
-	__vue_exports__ = __webpack_require__(50)
+	__vue_exports__ = __webpack_require__(53)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(51)
+	var __vue_template__ = __webpack_require__(54)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (typeof __vue_exports__.default === "object") {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
@@ -24621,18 +24239,18 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-2", __vue_options__)
+	    hotAPI.createRecord("data-v-3", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-2", __vue_options__)
+	    hotAPI.reload("data-v-3", __vue_options__)
 	  }
 	})()}
-	if (__vue_options__.functional) {console.error("[vue-loader] text-input.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	if (__vue_options__.functional) {console.error("[vue-loader] field-text-input.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 	
 	module.exports = __vue_exports__
 
 
 /***/ },
-/* 50 */
+/* 53 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24641,28 +24259,1347 @@
 	  value: true
 	});
 	exports.default = {
-	  props: ['label', 'placeholder', 'model']
+	  props: [
+	  // required for v-model component
+	  'label', 'value', 'placeholder'],
+	  computed: {
+	    compPlaceholder: function compPlaceholder() {
+	      return this.placeholder ? this.placeholder : this.label;
+	    }
+	  },
+	  methods: {
+	    onInput: function onInput(event) {
+	      this.$emit('input', event.target.value);
+	    }
+	  }
 	};
 
 /***/ },
-/* 51 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function(){with(this) {
-	  return _h('div', [_m(0), " ", _h('input', {
+	  return _h('div', {
+	    staticClass: "field"
+	  }, [_h('label', [_s(label)]), " ", _h('input', {
 	    attrs: {
 	      "type": "text",
-	      "placeholder": "First Name",
-	      "v-model": character.name
+	      "placeholder": compPlaceholder
+	    },
+	    domProps: {
+	      "value": value
+	    },
+	    on: {
+	      "input": onInput
 	    }
 	  })])
+	}},staticRenderFns: []}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-3", module.exports)
+	  }
+	}
+
+/***/ },
+/* 55 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(56)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(57)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-4", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-4", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] CharacterCreate.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 56 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+		data: function data() {
+			return {
+				character: {
+					proficiencies: {
+						stealth: true
+					}
+				},
+				classOptions: ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard", "Warlock"],
+				raceOptions: ["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-elf", "Half-Orc", "Halfling", "Human", "Tiefling", "Genasi", "Goliath"],
+				alignmentOptions: ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
+			};
+		}
+	};
+
+/***/ },
+/* 57 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _h('form', {
+	    staticClass: "ui form"
+	  }, [_h('div', {
+	    staticClass: "ui segments"
+	  }, [_h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('h1', {
+	    staticClass: "ui header"
+	  }, ["Character Creation " + _s(character.name)])]), " ", _h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('div', {
+	    staticClass: "two fields"
+	  }, [_h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.name),
+	      expression: "character.name"
+	    }],
+	    attrs: {
+	      "label": "Full Name"
+	    },
+	    domProps: {
+	      "value": (character.name)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.name = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.playername),
+	      expression: "character.playername"
+	    }],
+	    attrs: {
+	      "label": "Player"
+	    },
+	    domProps: {
+	      "value": (character.playername)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.playername = $event
+	      }
+	    }
+	  })])]), " ", _h('div', {
+	    staticClass: "ui horizontal segments"
+	  }, [_h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('field-select', {
+	    directives: [{
+	      name: "model",
+	      value: (character.sex),
+	      expression: "character.sex"
+	    }],
+	    attrs: {
+	      "label": "Sex",
+	      "options": ['Male', 'Female']
+	    },
+	    domProps: {
+	      "value": (character.sex)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.sex = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.age),
+	      expression: "character.age"
+	    }],
+	    attrs: {
+	      "label": "Age"
+	    },
+	    domProps: {
+	      "value": (character.age)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.age = $event
+	      }
+	    }
+	  }), " ", _h('field-select', {
+	    directives: [{
+	      name: "model",
+	      value: (character.race),
+	      expression: "character.race"
+	    }],
+	    attrs: {
+	      "label": "Race",
+	      "options": raceOptions
+	    },
+	    domProps: {
+	      "value": (character.race)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.race = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.subrace),
+	      expression: "character.subrace"
+	    }],
+	    attrs: {
+	      "label": "Subrace"
+	    },
+	    domProps: {
+	      "value": (character.subrace)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.subrace = $event
+	      }
+	    }
+	  })]), " ", _h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('field-select', {
+	    directives: [{
+	      name: "model",
+	      value: (character.class),
+	      expression: "character.class"
+	    }],
+	    attrs: {
+	      "label": "Class",
+	      "options": classOptions
+	    },
+	    domProps: {
+	      "value": (character.class)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.class = $event
+	      }
+	    }
+	  }), " ", _h('field-select', {
+	    directives: [{
+	      name: "model",
+	      value: (character.alignment),
+	      expression: "character.alignment"
+	    }],
+	    attrs: {
+	      "label": "Alignment",
+	      "options": alignmentOptions
+	    },
+	    domProps: {
+	      "value": (character.alignment)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.alignment = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.background),
+	      expression: "character.background"
+	    }],
+	    attrs: {
+	      "label": "Background"
+	    },
+	    domProps: {
+	      "value": (character.background)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.background = $event
+	      }
+	    }
+	  }), " ", _h('div', {
+	    staticClass: "two fields"
+	  }, [_h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.level),
+	      expression: "character.level"
+	    }],
+	    attrs: {
+	      "label": "Level"
+	    },
+	    domProps: {
+	      "value": (character.level)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.level = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.xp),
+	      expression: "character.xp"
+	    }],
+	    attrs: {
+	      "label": "Experience Points"
+	    },
+	    domProps: {
+	      "value": (character.xp)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.xp = $event
+	      }
+	    }
+	  })])])]), " ", _h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('div', {
+	    staticClass: "six fields"
+	  }, [_h('div', {
+	    staticClass: "ui massive input stat"
+	  }, [_h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.str),
+	      expression: "character.str"
+	    }],
+	    attrs: {
+	      "label": "Strength",
+	      "placeholder": "Str"
+	    },
+	    domProps: {
+	      "value": (character.str)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.str = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.dex),
+	      expression: "character.dex"
+	    }],
+	    attrs: {
+	      "label": "Dexterity",
+	      "placeholder": "Dex"
+	    },
+	    domProps: {
+	      "value": (character.dex)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.dex = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.con),
+	      expression: "character.con"
+	    }],
+	    attrs: {
+	      "label": "Constitution",
+	      "placeholder": "Con"
+	    },
+	    domProps: {
+	      "value": (character.con)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.con = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.int),
+	      expression: "character.int"
+	    }],
+	    attrs: {
+	      "label": "Intelligence",
+	      "placeholder": "Int"
+	    },
+	    domProps: {
+	      "value": (character.int)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.int = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.wis),
+	      expression: "character.wis"
+	    }],
+	    attrs: {
+	      "label": "Wisdom",
+	      "placeholder": "Wis"
+	    },
+	    domProps: {
+	      "value": (character.wis)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.wis = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.cha),
+	      expression: "character.cha"
+	    }],
+	    attrs: {
+	      "label": "Charisma",
+	      "placeholder": "Cha"
+	    },
+	    domProps: {
+	      "value": (character.cha)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.cha = $event
+	      }
+	    }
+	  })])])]), " ", _h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('div', {
+	    staticClass: "six fields"
+	  }, [_h('div', {
+	    staticClass: "field profs"
+	  }, [_h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.strSavingThrow),
+	      expression: "character.proficiencies.strSavingThrow"
+	    }],
+	    attrs: {
+	      "label": "Saving Throw"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.strSavingThrow)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.strSavingThrow = $event
+	      }
+	    }
+	  }), _m(0), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.athletics),
+	      expression: "character.proficiencies.athletics"
+	    }],
+	    attrs: {
+	      "label": "Athletics"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.athletics)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.athletics = $event
+	      }
+	    }
+	  }), _m(1)]), " ", " ", _h('div', {
+	    staticClass: "field profs"
+	  }, [_h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.dexSavingThrow),
+	      expression: "character.proficiencies.dexSavingThrow"
+	    }],
+	    attrs: {
+	      "label": "Saving Throw"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.dexSavingThrow)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.dexSavingThrow = $event
+	      }
+	    }
+	  }), _m(2), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.acrobatics),
+	      expression: "character.proficiencies.acrobatics"
+	    }],
+	    attrs: {
+	      "label": "Acrobatics"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.acrobatics)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.acrobatics = $event
+	      }
+	    }
+	  }), _m(3), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.sleightOfHand),
+	      expression: "character.proficiencies.sleightOfHand"
+	    }],
+	    attrs: {
+	      "label": "Sleight of Hand"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.sleightOfHand)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.sleightOfHand = $event
+	      }
+	    }
+	  }), _m(4), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.stealth),
+	      expression: "character.proficiencies.stealth"
+	    }],
+	    attrs: {
+	      "label": "Stealth"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.stealth)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.stealth = $event
+	      }
+	    }
+	  }), _m(5)]), " ", " ", _h('div', {
+	    staticClass: "field profs"
+	  }, [_h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.conSavingThrow),
+	      expression: "character.proficiencies.conSavingThrow"
+	    }],
+	    attrs: {
+	      "label": "Saving Throw"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.conSavingThrow)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.conSavingThrow = $event
+	      }
+	    }
+	  }), _m(6)]), " ", " ", _h('div', {
+	    staticClass: "field profs"
+	  }, [_h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.intSavingThrow),
+	      expression: "character.proficiencies.intSavingThrow"
+	    }],
+	    attrs: {
+	      "label": "Saving Throw"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.intSavingThrow)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.intSavingThrow = $event
+	      }
+	    }
+	  }), _m(7), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.arcana),
+	      expression: "character.proficiencies.arcana"
+	    }],
+	    attrs: {
+	      "label": "Arcana"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.arcana)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.arcana = $event
+	      }
+	    }
+	  }), _m(8), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.history),
+	      expression: "character.proficiencies.history"
+	    }],
+	    attrs: {
+	      "label": "History"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.history)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.history = $event
+	      }
+	    }
+	  }), _m(9), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.investigation),
+	      expression: "character.proficiencies.investigation"
+	    }],
+	    attrs: {
+	      "label": "Investigation"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.investigation)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.investigation = $event
+	      }
+	    }
+	  }), _m(10), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.nature),
+	      expression: "character.proficiencies.nature"
+	    }],
+	    attrs: {
+	      "label": "Nature"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.nature)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.nature = $event
+	      }
+	    }
+	  }), _m(11), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.religion),
+	      expression: "character.proficiencies.religion"
+	    }],
+	    attrs: {
+	      "label": "Religion"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.religion)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.religion = $event
+	      }
+	    }
+	  }), _m(12)]), " ", " ", _h('div', {
+	    staticClass: "field profs"
+	  }, [_h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.wisSavingThrow),
+	      expression: "character.proficiencies.wisSavingThrow"
+	    }],
+	    attrs: {
+	      "label": "Saving Throw"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.wisSavingThrow)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.wisSavingThrow = $event
+	      }
+	    }
+	  }), _m(13), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.animalHandling),
+	      expression: "character.proficiencies.animalHandling"
+	    }],
+	    attrs: {
+	      "label": "Animal Handling"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.animalHandling)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.animalHandling = $event
+	      }
+	    }
+	  }), _m(14), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.insight),
+	      expression: "character.proficiencies.insight"
+	    }],
+	    attrs: {
+	      "label": "Insight"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.insight)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.insight = $event
+	      }
+	    }
+	  }), _m(15), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.medicine),
+	      expression: "character.proficiencies.medicine"
+	    }],
+	    attrs: {
+	      "label": "Medicine"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.medicine)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.medicine = $event
+	      }
+	    }
+	  }), _m(16), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.perception),
+	      expression: "character.proficiencies.perception"
+	    }],
+	    attrs: {
+	      "label": "Perception"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.perception)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.perception = $event
+	      }
+	    }
+	  }), _m(17), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.survival),
+	      expression: "character.proficiencies.survival"
+	    }],
+	    attrs: {
+	      "label": "Survivial"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.survival)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.survival = $event
+	      }
+	    }
+	  }), _m(18)]), " ", " ", _h('div', {
+	    staticClass: "field profs"
+	  }, [_h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.chaSavingThrow),
+	      expression: "character.proficiencies.chaSavingThrow"
+	    }],
+	    attrs: {
+	      "label": "Saving Throw"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.chaSavingThrow)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.chaSavingThrow = $event
+	      }
+	    }
+	  }), _m(19), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.deception),
+	      expression: "character.proficiencies.deception"
+	    }],
+	    attrs: {
+	      "label": "Deception"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.deception)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.deception = $event
+	      }
+	    }
+	  }), _m(20), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.intimidation),
+	      expression: "character.proficiencies.intimidation"
+	    }],
+	    attrs: {
+	      "label": "Intimidation"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.intimidation)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.intimidation = $event
+	      }
+	    }
+	  }), _m(21), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.performance),
+	      expression: "character.proficiencies.performance"
+	    }],
+	    attrs: {
+	      "label": "Performance"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.performance)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.performance = $event
+	      }
+	    }
+	  }), _m(22), " ", _h('field-checkbox', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencies.persuasion),
+	      expression: "character.proficiencies.persuasion"
+	    }],
+	    attrs: {
+	      "label": "Persuasion"
+	    },
+	    domProps: {
+	      "value": (character.proficiencies.persuasion)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencies.persuasion = $event
+	      }
+	    }
+	  }), _m(23)])])]), " ", _m(24)])])
 	}},staticRenderFns: [function(){with(this) {
-	  return _h('label', ["First Name"])
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('br')
+	}},function(){with(this) {
+	  return _h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('button', {
+	    staticClass: "ui large violet button",
+	    attrs: {
+	      "type": "submit"
+	    }
+	  }, ["Submit"])])
 	}}]}
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-2", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-4", module.exports)
+	  }
+	}
+
+/***/ },
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(59)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(60)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-5", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-5", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] field-select.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 59 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  props: [
+	  // required for v-model component
+	  'label', 'value',
+	
+	  // can accept array of strings or array of objects matching
+	  // [{ value: "1", text: "One" }, ... ]
+	  'options'],
+	  computed: {
+	    optionsList: function optionsList() {
+	      if (typeof this.options[0] == 'string') {
+	        return this.options.map(function (option) {
+	          return { value: option, text: option };
+	        }, []);
+	      }
+	      return this.options;
+	    }
+	  },
+	  methods: {
+	    onChange: function onChange(event) {
+	      this.$emit('input', event.target.value);
+	    }
+	  }
+	};
+
+/***/ },
+/* 60 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _h('div', {
+	    staticClass: "field"
+	  }, [_h('label', [_s(label)]), " ", _h('select', {
+	    staticClass: "ui dropdown",
+	    domProps: {
+	      "value": value
+	    },
+	    on: {
+	      "change": onChange
+	    }
+	  }, [(optionsList) && _l((optionsList), function(option) {
+	    return _h('option', {
+	      domProps: {
+	        "value": option.value
+	      }
+	    }, [_s(option.text)])
+	  })])])
+	}},staticRenderFns: []}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-5", module.exports)
+	  }
+	}
+
+/***/ },
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(66)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(67)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-6", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-6", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] field-checkbox-toggle.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  props: [
+	  // required for v-model component
+	  'label', 'value'],
+	  computed: {
+	    compPlaceholder: function compPlaceholder() {
+	      return this.placeholder ? this.placeholder : this.label;
+	    }
+	  },
+	  methods: {
+	    onChange: function onChange(event) {
+	      this.$emit('input', event.target.value);
+	    }
+	  }
+	};
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _h('div', {
+	    staticClass: "ui toggle checkbox"
+	  }, [_h('input', {
+	    attrs: {
+	      "type": "checkbox"
+	    },
+	    domProps: {
+	      "value": value
+	    },
+	    on: {
+	      "change": onChange
+	    }
+	  }), " ", _h('label', [_s(label)])])
+	}},staticRenderFns: []}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-6", module.exports)
+	  }
+	}
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(69)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(70)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-7", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-7", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] field-checkbox-slider.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 69 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  data: function data() {
+	    return {
+	      state: null
+	    };
+	  },
+	
+	  props: [
+	  // required for v-model component
+	  'label', 'value', 'trueValue', 'falseValue'],
+	  computed: {
+	    compTrue: function compTrue() {
+	      return this.trueValue ? this.trueValue : true;
+	    },
+	    compFalse: function compFalse() {
+	      return this.falseValue ? this.falseValue : false;
+	    }
+	  },
+	  methods: {
+	    onChange: function onChange(event) {
+	      if (this.state == true) {
+	        this.$emit('input', this.compFalse);
+	        this.state = false;
+	      } else {
+	        this.$emit('input', this.compTrue);
+	        this.state = true;
+	      }
+	      console.log('state', this.state);
+	    }
+	  },
+	  mounted: function mounted() {
+	    this.state = this.value ? this.value : false;
+	  }
+	};
+
+/***/ },
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _h('div', {
+	    staticClass: "ui slider checkbox"
+	  }, [_h('input', {
+	    attrs: {
+	      "type": "checkbox",
+	      "true-value": compTrue,
+	      "false-value": compFalse
+	    },
+	    domProps: {
+	      "value": value
+	    },
+	    on: {
+	      "change": onChange
+	    }
+	  }), " ", _h('label', [_s(label)])])
+	}},staticRenderFns: []}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-7", module.exports)
+	  }
+	}
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(72)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(73)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-8", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-8", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] field-checkbox.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 72 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  data: function data() {
+	    return {
+	      state: null
+	    };
+	  },
+	
+	  props: [
+	  // required for v-model component
+	  'label', 'value', 'trueValue', 'falseValue'],
+	  computed: {
+	    compTrue: function compTrue() {
+	      return this.trueValue ? this.trueValue : true;
+	    },
+	    compFalse: function compFalse() {
+	      return this.falseValue ? this.falseValue : false;
+	    }
+	  },
+	  methods: {
+	    onChange: function onChange(event) {
+	      if (this.state == true) {
+	        this.$emit('input', this.compFalse);
+	        this.state = false;
+	      } else {
+	        this.$emit('input', this.compTrue);
+	        this.state = true;
+	      }
+	      console.log('state', this.state);
+	    }
+	  },
+	  mounted: function mounted() {
+	    this.state = this.value ? this.value : false;
+	  }
+	};
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _h('div', {
+	    staticClass: "ui checkbox"
+	  }, [_h('input', {
+	    attrs: {
+	      "type": "checkbox",
+	      "true-value": compTrue,
+	      "false-value": compFalse
+	    },
+	    domProps: {
+	      "checked": value
+	    },
+	    on: {
+	      "change": onChange
+	    }
+	  }), " ", _h('label', [_s(label)])])
+	}},staticRenderFns: []}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-8", module.exports)
 	  }
 	}
 
