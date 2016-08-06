@@ -1,10 +1,12 @@
 <script type="text/ecmascript6">
+import PouchDB from 'pouchdb'
+import CharacterService from '../services/CharacterService.js'
+
 	export default {
 		data() {
 			return {
 				character: {
 					proficiencies: {
-						stealth: true
 					}
 				},
 				classOptions: [
@@ -46,6 +48,12 @@
 						"Chaotic Evil"
 				]
 			}
+		},
+		methods: {
+			onSubmit: function () {
+				console.log('Submit fired')
+				CharacterService.saveCharacter(this.character)
+			}
 		}
 	}
 
@@ -53,7 +61,7 @@
 
 <template>
 
-<form class="ui form">
+<form class="ui form" v-on:submit.prevent="onSubmit">
 	<div class="ui segments">
 		<div class="ui tertiary red segment">
 				<h1 class="ui header">Character Creation {{character.name}}</h1>
@@ -137,6 +145,51 @@
 
 			</div>
 		</div>
+
+		<!-- Additional Info -->
+		<div class="ui tertiary red segment">
+
+			<div class="six fields">
+
+				<field-text-input 
+					label="Armor Class (AC)" 
+					v-model="character.ac"
+				></field-text-input>		
+
+				<field-text-input 
+					label="Initiative" 
+					placeholder="(Dexterity Mod)"
+					v-model="character.initiative"
+				></field-text-input>	
+
+				<field-text-input 
+					label="Proficiency Bonus" 
+					v-model="character.proficiencyBonus"
+				></field-text-input>	
+
+				<field-text-input 
+					label="Passive Perception" 
+					placeholder="(10+Perception Mod)"
+					v-model="character.passivePerception"
+				></field-text-input>
+
+				<field-text-input 
+					label="Speed" 
+					placeholder="30ft"
+					v-model="character.speed"
+				></field-text-input>	
+
+				<field-text-input 
+					label="Hit Dice" 
+					placeholder="3d8+2" 
+					v-model="character.hitDice"
+				></field-text-input>	
+
+			</div>
+
+		</div>
+
+		<!-- Basic Stats -->
 		<div class="ui tertiary red segment">
 			
 			<div class="six fields">
@@ -340,6 +393,8 @@
 			</div>
 
 		</div>
+
+
 		<div class="ui tertiary red segment">
 			<button class="ui large violet button" type="submit">Submit</button>
 		</div>

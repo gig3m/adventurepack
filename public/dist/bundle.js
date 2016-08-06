@@ -54,9 +54,17 @@
 	
 	var _vue2 = _interopRequireDefault(_vue);
 	
-	var _CharacterCreate = __webpack_require__(55);
+	var _CharacterCreate = __webpack_require__(20);
 	
 	var _CharacterCreate2 = _interopRequireDefault(_CharacterCreate);
+	
+	var _CharacterList = __webpack_require__(50);
+	
+	var _CharacterList2 = _interopRequireDefault(_CharacterList);
+	
+	var _EncounterCreate = __webpack_require__(53);
+	
+	var _EncounterCreate2 = _interopRequireDefault(_EncounterCreate);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -68,19 +76,26 @@
 	
 	
 	// Pull in global components and register
-	_vue2.default.component('field-text-input', __webpack_require__(52));
-	_vue2.default.component('field-select', __webpack_require__(58));
-	_vue2.default.component('field-checkbox-toggle', __webpack_require__(65));
-	_vue2.default.component('field-checkbox-slider', __webpack_require__(68));
-	_vue2.default.component('field-checkbox', __webpack_require__(71));
+	_vue2.default.component('field-text-input', __webpack_require__(56));
+	_vue2.default.component('field-select', __webpack_require__(59));
+	_vue2.default.component('field-checkbox-toggle', __webpack_require__(62));
+	_vue2.default.component('field-checkbox-slider', __webpack_require__(65));
+	_vue2.default.component('field-checkbox', __webpack_require__(68));
 	
 	new _vue2.default({
 	  el: '#app',
 	  data: {
-	    currentView: 'CharacterCreate'
+	    currentView: 'CharacterList'
 	  },
 	  components: {
-	    CharacterCreate: _CharacterCreate2.default
+	    CharacterCreate: _CharacterCreate2.default,
+	    CharacterList: _CharacterList2.default,
+	    EncounterCreate: _EncounterCreate2.default
+	  },
+	  methods: {
+	    changeView: function changeView(target) {
+	      this.currentView = target;
+	    }
 	  }
 	});
 
@@ -20213,9 +20228,129 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 20 */,
-/* 21 */,
-/* 22 */,
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(21)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(49)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-4", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-4", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] CharacterCreate.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _pouchdb = __webpack_require__(1);
+	
+	var _pouchdb2 = _interopRequireDefault(_pouchdb);
+	
+	var _CharacterService = __webpack_require__(22);
+	
+	var _CharacterService2 = _interopRequireDefault(_CharacterService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		data: function data() {
+			return {
+				character: {
+					proficiencies: {}
+				},
+				classOptions: ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard", "Warlock"],
+				raceOptions: ["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-elf", "Half-Orc", "Halfling", "Human", "Tiefling", "Genasi", "Goliath"],
+				alignmentOptions: ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
+			};
+		},
+	
+		methods: {
+			onSubmit: function onSubmit() {
+				console.log('Submit fired');
+				_CharacterService2.default.saveCharacter(this.character);
+			}
+		}
+	};
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _pouchdb = __webpack_require__(1);
+	
+	var _pouchdb2 = _interopRequireDefault(_pouchdb);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// Setup query plugin
+	_pouchdb2.default.plugin(__webpack_require__(23));
+	_pouchdb2.default.debug.enable('pouchdb:find');
+	var db = new _pouchdb2.default('advpack');
+	
+	exports.default = {
+	
+		saveCharacter: function saveCharacter(character) {
+			// this should produce character_First-Second-Last
+			character._id = 'character_' + character.name.replace(/\s+/g, '-');
+			character.documentType = "Character";
+			db.post(character);
+		},
+	
+		getCharacters: function getCharacters() {
+			return db.createIndex({
+				index: { fields: ['documentType'] }
+			}).then(function () {
+				return db.find({
+					selector: { documentType: 'Character' }
+				}).then(function (results) {
+					return results.docs;
+				});
+			});
+		}
+	
+	};
+
+/***/ },
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -24208,169 +24343,18 @@
 	module.exports = deleteIndex;
 
 /***/ },
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_exports__, __vue_options__
-	
-	/* script */
-	__vue_exports__ = __webpack_require__(53)
-	
-	/* template */
-	var __vue_template__ = __webpack_require__(54)
-	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
-	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-	__vue_options__ = __vue_exports__ = __vue_exports__.default
-	}
-	if (typeof __vue_options__ === "function") {
-	  __vue_options__ = __vue_options__.options
-	}
-	__vue_options__.render = __vue_template__.render
-	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	
-	/* hot reload */
-	if (false) {(function () {
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), false)
-	  if (!hotAPI.compatible) return
-	  module.hot.accept()
-	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-3", __vue_options__)
-	  } else {
-	    hotAPI.reload("data-v-3", __vue_options__)
-	  }
-	})()}
-	if (__vue_options__.functional) {console.error("[vue-loader] field-text-input.vue: functional components are not supported and should be defined in plain js files using render functions.")}
-	
-	module.exports = __vue_exports__
-
-
-/***/ },
-/* 53 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  props: [
-	  // required for v-model component
-	  'label', 'value', 'placeholder'],
-	  computed: {
-	    compPlaceholder: function compPlaceholder() {
-	      return this.placeholder ? this.placeholder : this.label;
-	    }
-	  },
-	  methods: {
-	    onInput: function onInput(event) {
-	      this.$emit('input', event.target.value);
-	    }
-	  }
-	};
-
-/***/ },
-/* 54 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports={render:function(){with(this) {
-	  return _h('div', {
-	    staticClass: "field"
-	  }, [_h('label', [_s(label)]), " ", _h('input', {
-	    attrs: {
-	      "type": "text",
-	      "placeholder": compPlaceholder
-	    },
-	    domProps: {
-	      "value": value
-	    },
-	    on: {
-	      "input": onInput
-	    }
-	  })])
-	}},staticRenderFns: []}
-	if (false) {
-	  module.hot.accept()
-	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-3", module.exports)
-	  }
-	}
-
-/***/ },
-/* 55 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_exports__, __vue_options__
-	
-	/* script */
-	__vue_exports__ = __webpack_require__(56)
-	
-	/* template */
-	var __vue_template__ = __webpack_require__(57)
-	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
-	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-	__vue_options__ = __vue_exports__ = __vue_exports__.default
-	}
-	if (typeof __vue_options__ === "function") {
-	  __vue_options__ = __vue_options__.options
-	}
-	__vue_options__.render = __vue_template__.render
-	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	
-	/* hot reload */
-	if (false) {(function () {
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), false)
-	  if (!hotAPI.compatible) return
-	  module.hot.accept()
-	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-4", __vue_options__)
-	  } else {
-	    hotAPI.reload("data-v-4", __vue_options__)
-	  }
-	})()}
-	if (__vue_options__.functional) {console.error("[vue-loader] CharacterCreate.vue: functional components are not supported and should be defined in plain js files using render functions.")}
-	
-	module.exports = __vue_exports__
-
-
-/***/ },
-/* 56 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = {
-		data: function data() {
-			return {
-				character: {
-					proficiencies: {
-						stealth: true
-					}
-				},
-				classOptions: ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard", "Warlock"],
-				raceOptions: ["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-elf", "Half-Orc", "Halfling", "Human", "Tiefling", "Genasi", "Goliath"],
-				alignmentOptions: ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
-			};
-		}
-	};
-
-/***/ },
-/* 57 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function(){with(this) {
 	  return _h('form', {
-	    staticClass: "ui form"
+	    staticClass: "ui form",
+	    on: {
+	      "submit": function($event) {
+	        $event.preventDefault();
+	        onSubmit($event)
+	      }
+	    }
 	  }, [_h('div', {
 	    staticClass: "ui segments"
 	  }, [_h('div', {
@@ -24580,7 +24564,117 @@
 	        character.xp = $event
 	      }
 	    }
-	  })])])]), " ", _h('div', {
+	  })])])]), " ", " ", _h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('div', {
+	    staticClass: "six fields"
+	  }, [_h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.ac),
+	      expression: "character.ac"
+	    }],
+	    attrs: {
+	      "label": "Armor Class (AC)"
+	    },
+	    domProps: {
+	      "value": (character.ac)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.ac = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.initiative),
+	      expression: "character.initiative"
+	    }],
+	    attrs: {
+	      "label": "Initiative",
+	      "placeholder": "(Dexterity Mod)"
+	    },
+	    domProps: {
+	      "value": (character.initiative)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.initiative = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.proficiencyBonus),
+	      expression: "character.proficiencyBonus"
+	    }],
+	    attrs: {
+	      "label": "Proficiency Bonus"
+	    },
+	    domProps: {
+	      "value": (character.proficiencyBonus)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.proficiencyBonus = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.passivePerception),
+	      expression: "character.passivePerception"
+	    }],
+	    attrs: {
+	      "label": "Passive Perception",
+	      "placeholder": "(10+Perception Mod)"
+	    },
+	    domProps: {
+	      "value": (character.passivePerception)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.passivePerception = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.speed),
+	      expression: "character.speed"
+	    }],
+	    attrs: {
+	      "label": "Speed",
+	      "placeholder": "30ft"
+	    },
+	    domProps: {
+	      "value": (character.speed)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.speed = $event
+	      }
+	    }
+	  }), " ", _h('field-text-input', {
+	    directives: [{
+	      name: "model",
+	      value: (character.hitDice),
+	      expression: "character.hitDice"
+	    }],
+	    attrs: {
+	      "label": "Hit Dice",
+	      "placeholder": "3d8+2"
+	    },
+	    domProps: {
+	      "value": (character.hitDice)
+	    },
+	    on: {
+	      "input": function($event) {
+	        character.hitDice = $event
+	      }
+	    }
+	  })])]), " ", " ", _h('div', {
 	    staticClass: "ui tertiary red segment"
 	  }, [_h('div', {
 	    staticClass: "six fields"
@@ -25185,16 +25279,278 @@
 	}
 
 /***/ },
-/* 58 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	
 	/* script */
-	__vue_exports__ = __webpack_require__(59)
+	__vue_exports__ = __webpack_require__(51)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(60)
+	var __vue_template__ = __webpack_require__(52)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-1", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-1", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] CharacterList.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _pouchdb = __webpack_require__(1);
+	
+	var _pouchdb2 = _interopRequireDefault(_pouchdb);
+	
+	var _CharacterService = __webpack_require__(22);
+	
+	var _CharacterService2 = _interopRequireDefault(_CharacterService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		data: function data() {
+			return {
+				characters: null
+			};
+		},
+		mounted: function mounted() {
+			self = this;
+			_CharacterService2.default.getCharacters().then(function (result) {
+				self.characters = result;
+			});
+		}
+	};
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _h('table', {
+	    staticClass: "ui striped table"
+	  }, [_m(0), " ", _h('tbody', [(characters) && _l((characters), function(character) {
+	    return _h('tr', [_h('td', [_s(character.name)]), " ", _h('td', [_s(character.race) + " " + _s(character.class) + " (" + _s(character.level) + ")"]), " ", _h('td', [_s(character.playername)])])
+	  })])])
+	}},staticRenderFns: [function(){with(this) {
+	  return _h('thead', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["Player"])])
+	}}]}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-1", module.exports)
+	  }
+	}
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(54)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(55)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-3", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-3", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] EncounterCreate.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 54 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+		data: function data() {
+			return {
+				test: null
+			};
+		}
+	};
+
+/***/ },
+/* 55 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _m(0)
+	}},staticRenderFns: [function(){with(this) {
+	  return _h('div', {
+	    staticClass: "ui segments"
+	  }, [_h('div', {
+	    staticClass: "ui tertiary red segment"
+	  }, [_h('h1', {
+	    staticClass: "ui header"
+	  }, ["Encounter Creation"])])])
+	}}]}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-3", module.exports)
+	  }
+	}
+
+/***/ },
+/* 56 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(57)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(58)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-2", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-2", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] field-text-input.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 57 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  props: [
+	  // required for v-model component
+	  'label', 'value', 'placeholder'],
+	  computed: {
+	    compPlaceholder: function compPlaceholder() {
+	      return this.placeholder ? this.placeholder : this.label;
+	    }
+	  },
+	  methods: {
+	    onInput: function onInput(event) {
+	      this.$emit('input', event.target.value);
+	    }
+	  }
+	};
+
+/***/ },
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _h('div', {
+	    staticClass: "field"
+	  }, [_h('label', [_s(label)]), " ", _h('input', {
+	    attrs: {
+	      "type": "text",
+	      "placeholder": compPlaceholder
+	    },
+	    domProps: {
+	      "value": value
+	    },
+	    on: {
+	      "input": onInput
+	    }
+	  })])
+	}},staticRenderFns: []}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-2", module.exports)
+	  }
+	}
+
+/***/ },
+/* 59 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(60)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(61)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (typeof __vue_exports__.default === "object") {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
@@ -25224,7 +25580,7 @@
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25258,7 +25614,7 @@
 	};
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function(){with(this) {
@@ -25288,20 +25644,16 @@
 	}
 
 /***/ },
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	
 	/* script */
-	__vue_exports__ = __webpack_require__(66)
+	__vue_exports__ = __webpack_require__(63)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(67)
+	var __vue_template__ = __webpack_require__(64)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (typeof __vue_exports__.default === "object") {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
@@ -25331,7 +25683,7 @@
 
 
 /***/ },
-/* 66 */
+/* 63 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25356,7 +25708,7 @@
 	};
 
 /***/ },
-/* 67 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function(){with(this) {
@@ -25378,6 +25730,117 @@
 	  module.hot.accept()
 	  if (module.hot.data) {
 	     require("vue-hot-reload-api").rerender("data-v-6", module.exports)
+	  }
+	}
+
+/***/ },
+/* 65 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(66)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(67)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (typeof __vue_exports__.default === "object") {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-7", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-7", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] field-checkbox-slider.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  data: function data() {
+	    return {
+	      state: null
+	    };
+	  },
+	
+	  props: [
+	  // required for v-model component
+	  'label', 'value', 'trueValue', 'falseValue'],
+	  computed: {
+	    compTrue: function compTrue() {
+	      return this.trueValue ? this.trueValue : true;
+	    },
+	    compFalse: function compFalse() {
+	      return this.falseValue ? this.falseValue : false;
+	    }
+	  },
+	  methods: {
+	    onChange: function onChange(event) {
+	      if (this.state == true) {
+	        this.$emit('input', this.compFalse);
+	        this.state = false;
+	      } else {
+	        this.$emit('input', this.compTrue);
+	        this.state = true;
+	      }
+	      console.log('state', this.state);
+	    }
+	  },
+	  mounted: function mounted() {
+	    this.state = this.value ? this.value : false;
+	  }
+	};
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function(){with(this) {
+	  return _h('div', {
+	    staticClass: "ui slider checkbox"
+	  }, [_h('input', {
+	    attrs: {
+	      "type": "checkbox",
+	      "true-value": compTrue,
+	      "false-value": compFalse
+	    },
+	    domProps: {
+	      "checked": value
+	    },
+	    on: {
+	      "change": onChange
+	    }
+	  }), " ", _h('label', [_s(label)])])
+	}},staticRenderFns: []}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-7", module.exports)
 	  }
 	}
 
@@ -25410,12 +25873,12 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-7", __vue_options__)
+	    hotAPI.createRecord("data-v-8", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-7", __vue_options__)
+	    hotAPI.reload("data-v-8", __vue_options__)
 	  }
 	})()}
-	if (__vue_options__.functional) {console.error("[vue-loader] field-checkbox-slider.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	if (__vue_options__.functional) {console.error("[vue-loader] field-checkbox.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 	
 	module.exports = __vue_exports__
 
@@ -25466,117 +25929,6 @@
 
 /***/ },
 /* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports={render:function(){with(this) {
-	  return _h('div', {
-	    staticClass: "ui slider checkbox"
-	  }, [_h('input', {
-	    attrs: {
-	      "type": "checkbox",
-	      "true-value": compTrue,
-	      "false-value": compFalse
-	    },
-	    domProps: {
-	      "value": value
-	    },
-	    on: {
-	      "change": onChange
-	    }
-	  }), " ", _h('label', [_s(label)])])
-	}},staticRenderFns: []}
-	if (false) {
-	  module.hot.accept()
-	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-7", module.exports)
-	  }
-	}
-
-/***/ },
-/* 71 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_exports__, __vue_options__
-	
-	/* script */
-	__vue_exports__ = __webpack_require__(72)
-	
-	/* template */
-	var __vue_template__ = __webpack_require__(73)
-	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
-	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-	__vue_options__ = __vue_exports__ = __vue_exports__.default
-	}
-	if (typeof __vue_options__ === "function") {
-	  __vue_options__ = __vue_options__.options
-	}
-	__vue_options__.render = __vue_template__.render
-	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	
-	/* hot reload */
-	if (false) {(function () {
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), false)
-	  if (!hotAPI.compatible) return
-	  module.hot.accept()
-	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-8", __vue_options__)
-	  } else {
-	    hotAPI.reload("data-v-8", __vue_options__)
-	  }
-	})()}
-	if (__vue_options__.functional) {console.error("[vue-loader] field-checkbox.vue: functional components are not supported and should be defined in plain js files using render functions.")}
-	
-	module.exports = __vue_exports__
-
-
-/***/ },
-/* 72 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  data: function data() {
-	    return {
-	      state: null
-	    };
-	  },
-	
-	  props: [
-	  // required for v-model component
-	  'label', 'value', 'trueValue', 'falseValue'],
-	  computed: {
-	    compTrue: function compTrue() {
-	      return this.trueValue ? this.trueValue : true;
-	    },
-	    compFalse: function compFalse() {
-	      return this.falseValue ? this.falseValue : false;
-	    }
-	  },
-	  methods: {
-	    onChange: function onChange(event) {
-	      if (this.state == true) {
-	        this.$emit('input', this.compFalse);
-	        this.state = false;
-	      } else {
-	        this.$emit('input', this.compTrue);
-	        this.state = true;
-	      }
-	      console.log('state', this.state);
-	    }
-	  },
-	  mounted: function mounted() {
-	    this.state = this.value ? this.value : false;
-	  }
-	};
-
-/***/ },
-/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function(){with(this) {

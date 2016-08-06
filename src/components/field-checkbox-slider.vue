@@ -46,7 +46,7 @@
 <template>
 
   <div class="ui slider checkbox">
-    <input type="checkbox" v-bind:value="value" v-bind:true-value="compTrue" v-bind:false-value="compFalse" v-on:change="onChange">
+    <input type="checkbox" v-bind:checked="value" v-bind:true-value="compTrue" v-bind:false-value="compFalse" v-on:change="onChange">
     <label>{{ label }}</label>
   </div>
 
